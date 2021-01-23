@@ -48,6 +48,7 @@ export class AuthService {
   estaAutenticado() {
     return !!this.user;
   }
+  
   esAdmin(){
     if (this.user[0].rol==2){
       return true;
@@ -62,10 +63,16 @@ export class AuthService {
       }),
     };
     return this.http.post<Usuario_Reg>(this.API+"Registro", usuario, hdrs).subscribe(
-      (res) => {},
-      (error) => {},
+      (res) => {
+        this.toastr.success("Usuario creado Correctamente!", "Bienvenido!");
+        this.router.navigate(["/Login"]);
+      },
+      (error) => {
+        this.toastr.warning("Error: Usuario ya existe", "Usuario!");
+      },
       () => {
-        this.router.navigate(["/Home"]);
+        this.router.navigate(["/Login"]);
+
       }
     );
   }

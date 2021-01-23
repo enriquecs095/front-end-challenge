@@ -16,7 +16,11 @@ import { newProduct } from '../menu/Producto';
             line-height: inherit;
             width: 400px;
           }
-        em {float:right; color:#E05C65; padding-left: 10px;}
+        em {float:right; color:#E05C65; padding-left: 10px;}    
+    h1{
+        text-align: center;
+        }
+
         `
     ]
 })

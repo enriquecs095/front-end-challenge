@@ -2,15 +2,15 @@
 export class newReviews{
     valoracion: number;
     mensaje: string;
-    fecha: string;
-    productosidproducto: number;
+    fecha: Date;
+    idproducto: number;
 }
 
 
 export class newProduct{
     precio: number;
     nombre:string;
-    menuIdMenu: number;
+    Idmenu: number;
     descripcion: string;
     url: string;
     status:number;
@@ -18,10 +18,10 @@ export class newProduct{
 
 
 export class Product{
-    idProducto:number;
+    idproducto:number;
     precio: number;
     nombre:string;
-    menuIdMenu: number;
+    Idmenu: number;
     descripcion: string;
     url: string;
     status:number;
@@ -31,11 +31,18 @@ export class lstCarrito{
     idProducto:number;
     precio: number;
     nombre:string;
-    menuIdMenu: number;
+    IdMenu: number;
     descripcion: string;
     url: string;
-
-
 }
 
+export interface Carrito {
+    idProducto: number;
+    nombre: string;
+    descripcion: string;
+    precioUnitario: number;
+    total: number;
+    url: string;
+    cantidad: number;
+  }
 

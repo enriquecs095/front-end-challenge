@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { Menu1Component } from './menu/menu1.component';
 import { Menu2Component } from './menu/menu2.component';
@@ -15,8 +14,6 @@ import { RegistroComponent } from './registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
-import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
-import { MenuAdministradorComponent } from './menu-administrador/menu-administrador.component';
 import { ChatComponent } from './chat/chat.component';
 import { SignalRService } from './chat/signalR.service';
 import { AuthService } from './auth-service/auth-service.component';
@@ -29,17 +26,18 @@ import { ProductsListService } from './menu/Products.service';
 import { ReviewsService } from './menu/Reviews.service';
 import { ProductsAdminService } from './products-admin/products-admin.service';
 import { listCarritoComponent } from './compras/list-carrito.component';
-import { SendProductsService } from './menu/sendProducts.service';
+import { SendProductsService } from './compras/sendProducts.service';
 import { PagosService } from './compras/pagos.service';
 import { RegistroComprasComponent } from './registro-compras/registro.component';
 import { DetalleOrdenComponent } from './registro-compras/detalle-orden/detalle.orden.component';
 import { Menu4Component } from './menu/menu4.component';
-
+import {ArraySortPipe} from './sort/sort.pipe'
+import {PageNotFound} from './not-found/404-error.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    NavbarComponent,
     Menu1Component,
     Menu2Component,
     Menu3Component,
@@ -47,8 +45,6 @@ import { Menu4Component } from './menu/menu4.component';
     RegistroComponent,
     SlideShowComponent,
     LoginComponent,
-    MenuUsuarioComponent,
-    MenuAdministradorComponent,
     ChatComponent,
     ProductsComponent,
     EditProductComponent,
@@ -56,8 +52,9 @@ import { Menu4Component } from './menu/menu4.component';
     listCarritoComponent,
     RegistroComprasComponent,
     DetalleOrdenComponent,
-    Menu4Component
-
+    Menu4Component,
+    ArraySortPipe,
+    PageNotFound
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,6 +73,7 @@ import { Menu4Component } from './menu/menu4.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 
 export function checkForm(component: AddProductComponent ){
   if(component.isDirty()&& !component.isSave){

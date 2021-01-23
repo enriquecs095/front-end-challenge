@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductsListService } from "./Products.service";
 import { ReviewsService } from "./Reviews.service";
-import { SendProductsService, Carrito } from "./sendProducts.service";
+import { SendProductsService } from "../compras/sendProducts.service";
 import { AuthService } from '../auth-service/auth-service.component';
+import {Product} from './Producto';
 
 @Component({
   selector: "menu1-class",
-  templateUrl: "./Pizzas.component.html",
-
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.css"]
 })
 export class Menu1Component implements OnInit {
   lstProducts: any;
@@ -39,16 +40,12 @@ export class Menu1Component implements OnInit {
     this.load =true;
     },700
     )
-
-
   }
 
-  showReviews(pr) {
-    this.hideOptionReview();
-    this.url = pr.url;
-    this.nombre = pr.nombre;
-    this.id = pr.idProducto;
-    this.reviews.getReviews(pr.idProducto).subscribe(
+  showReviews(pr: Product) {
+    this.url=pr.url;
+    this.nombre=pr.nombre;
+    this.reviews.getReviews(pr.idproducto).subscribe(
       (res) => {
         this.lstReviews = res;
       },
@@ -57,34 +54,11 @@ export class Menu1Component implements OnInit {
       }
     );
   }
-  addReviews() {
-    this.range = (document.getElementById("range") as HTMLInputElement).value;
-    this.comments = (document.getElementById(
-      "comment"
-    ) as HTMLInputElement).value;
-    this.reviews.addReviews(this.id, this.range, this.comments);
-    this.hideOptionReview();
-  }
-  agregarCarrito(producto) {
-    var pr = <Carrito>{
-      idProducto: +producto.idProducto,
-      nombre: producto.nombre,
-      descripcion: producto.descripcion,
-      precioUnitario: +producto.precio,
-      total: +producto.precio,
-      url: producto.url,
-      cantidad: 1,
-    };
-    this.carritoService.agregarProducto(pr);
+
+  agregarProducto(producto) {
+    this.carritoService.agregarProducto(producto);
   }
 
-  hideOptionReview() {
-    document.getElementById("esconder").style.display = "none";
-  }
-
-  showOptionReview() {
-    document.getElementById("esconder").style.display = "inline";
-  }
 
 
 }

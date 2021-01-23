@@ -3,7 +3,7 @@ import { ProductsAdminService } from './products-admin.service';
 import { RouterLink, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../menu/Producto';
-
+import {ArraySortPipe} from '../sort/sort.pipe'
 
 @Component({
     selector: 'products',
@@ -13,13 +13,14 @@ import { Product } from '../menu/Producto';
 
 
 export class ProductsComponent{
-    lstProducts:any;
+    lstProducts: any;
     imageWidth=50;
     imageMargin=2;
     
     constructor(private productsAdmin: ProductsAdminService, 
         private router: Router,
-        private toastr: ToastrService){
+        private toastr: ToastrService
+        ){
     }
 
 

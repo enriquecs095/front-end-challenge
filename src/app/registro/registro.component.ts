@@ -29,22 +29,7 @@ export class RegistroComponent implements OnInit {
       Contrasena: form.contrasena,
       Nombre: form.nombre,
     };
-    console.log(usuario)
     this.authService.registrarUser(usuario);
-
-
   }
-  // onSubmit() {
-  //   const usuario: Usuario = <Usuario>{
-  //     "Correo": this.user.get('correo').value,
-  //     "Nombre": this.user.get('nombre').value,
-  //     "Contrasena": this.user.get('contrasena').value
-  //   };
-  //   //console.warn(this.profileForm.value);
-  //   return this.http.post(this.API,usuario).subscribe(
-  //     res=>{},
-  //     error => { this.toastr.warning('Error: Usuario ya existe', 'Usuario!')},
-  //     ()=> {    this.toastr.success('Usuario Registrado Correctamente!', 'Bienvenido!');  this.router.navigateByUrl('/Login', { skipLocationChange: true });  });
-  //   }
 }
 

@@ -11,7 +11,7 @@
         <div class="card wish-list mb-3">
           <div class="card-body">
   
-            <h5 class="mb-4">Cart ({{listaProductos.length}})</h5>
+            <h5 class="mb-4">Carrito de Compras ({{listaProductos.length}})</h5>
             <!-- Inserto de productos -->
             <div class="row mb-4" *ngFor ="let producto of listaProductos">
               <div class="col-md-5 col-lg-3 col-xl-3">
@@ -45,7 +45,7 @@
                       <a type="button" class="card-link-secondary small text-uppercase mr-3"  (click)= "borrarProducto(producto)"><i
                           class="fas fa-trash-alt mr-1"></i> Eliminar Producto </a>
                     </div>
-                    <p class="mb-0"><span><strong>${{producto.precioUnitario}}</strong></span></p>
+                    <p class="mb-0"><span><strong>Lps. {{producto.precioUnitario | number:'3.1-5'}}</strong></span></p>
                   </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@
         <div class="card mb-3">
           <div class="card-body">
   
-            <h5 class="mb-4">We accept</h5>
+            <h5 class="mb-4">Aceptamos:</h5>
   
             <img class="mr-2" width="45px"
               src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
@@ -102,7 +102,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                 Subtotal
-                <span>${{getTotalPago()}}</span>
+                <span>Lps. {{getTotalPago() | number:'3.1-5'}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                 Envio
@@ -115,7 +115,7 @@
                     <p class="mb-0">(including TAX)</p>
                   </strong>
                 </div>
-                <span><strong>${{getTotalPago()}}</strong></span>
+                <span><strong>Lps. {{getTotalPago() | number:'3.1-5'}}</strong></span>
               </li>
             </ul>
   
@@ -131,7 +131,7 @@
   
             <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
               aria-expanded="false" aria-controls="collapseExample1">
-              Anadir codigo de descuento (opcional)
+              Añadir codigo de descuento (opcional)
               <span><i class="fas fa-chevron-down pt-1"></i></span>
             </a>
   

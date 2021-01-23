@@ -30,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of lstProducts">
+            <tr *ngFor="let product of lstProducts | orderBy: 'idproducto'">
               <td>
                 <img *ngIf="product.url"
                      [src]="product.url"
@@ -38,12 +38,12 @@
                      [style.width.px]="imageWidth"
                      [style.margin.px]="imageMargin">
               </td>
-              <td>{{ product.idProducto}}-{{ product.menuIdMenu}}</td>
+              <td>{{ product.idmenu}}-{{ product.idproducto}}</td>
               <td>{{ product.nombre }}</td>
               <td>{{ product.descripcion }}</td>
               <td>{{ product.precio | currency:"L. ":"symbol" }}</td>
               <td>
-                <button class="btn btn-outline-primary btn-sm" style="margin-bottom: 10px;" [routerLink]="['edit/',product.idProducto]">
+                <button class="btn btn-outline-primary btn-sm" style="margin-bottom: 10px;" [routerLink]="['edit/',product.idproducto]">
                   Editar
                 </button>
               </td>

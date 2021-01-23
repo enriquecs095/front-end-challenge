@@ -1,0 +1,52 @@
+*{
+font-family: 'Montserrat', sans-serif;
+}
+
+body{
+background-color: #60a3bc;
+margin: 0;
+}
+
+.content{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+height: 100vh;
+}
+
+h1{
+font-size:300px;
+margin: 0;
+background: url(https://w3hubs.com/Page-Not-Found-Template/bg.jpg) repeat 0px 0px;
+background-size: contain;
+webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
+color: transparent;
+}
+
+h4{
+font-size: 50px;
+margin: 0;
+}
+
+h4,p{
+color: #fff;
+}
+
+button{
+background-color: #d63031;
+color: #fff;
+padding: 10px 30px;
+border:0px;
+height: 50px;
+cursor: pointer;
+margin-top: 15px;
+font-size: 18px;
+border-radius: 6px;
+text-decoration: none;
+}
+
+button:hover{
+background-color: #e74c3c;
+}

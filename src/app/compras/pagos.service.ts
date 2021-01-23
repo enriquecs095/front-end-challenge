@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Carrito } from "../menu/sendProducts.service";
+import { Carrito } from "../menu/producto";
 import { AuthService } from "../auth-service/auth-service.component";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
@@ -43,7 +43,9 @@ export class PagosService {
           };
           this.http.post(this.APIOrden, Orden_Producto).subscribe(
             (res) => {},
-            (error) => {},
+            (error) => {
+              console.log(error);
+            },
             () => {
             }
           );

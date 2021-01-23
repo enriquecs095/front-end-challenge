@@ -1,5 +1,5 @@
-import { Component, OnInit, ɵConsole } from "@angular/core";
-import { SendProductsService } from "../menu/sendProducts.service";
+import { Component, OnInit } from "@angular/core";
+import { SendProductsService } from "./sendProducts.service";
 import { PagosService } from './pagos.service';
 import { AuthService } from '../auth-service/auth-service.component';
 
@@ -23,6 +23,7 @@ export class listCarritoComponent implements OnInit {
     this.carritoService.setListaProductos(this.listaProductos);
     console.log(this.listaProductos);
   }
+
   getTotalPago() {
     let total = 0;
     for (var i = 0; i < this.listaProductos.length; i++) {
@@ -37,6 +38,7 @@ export class listCarritoComponent implements OnInit {
     var valor = +(document.getElementById("valor"+producto.idProducto) as HTMLInputElement).value;
    this.carritoService.cambiarCantidad(producto,valor);
   }
+
   pagarProductos(){
     if(window.confirm("Desea pagar ?")){
       console.log("entre")

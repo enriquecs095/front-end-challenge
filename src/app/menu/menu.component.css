@@ -1,0 +1,47 @@
+
+
+
+.Prodhover:hover{
+    background-color: rgb(235, 25, 18);
+}
+
+.Prod{
+    margin-top: 30px;
+    background-color: rgb(238, 113, 40);
+    color: aliceblue;
+}
+
+.btn-primary{
+	background-color: rgb(119, 4, 4);
+}
+
+.btn-info{
+	background-color: rgb(12, 105, 20);
+
+}
+
+.card{
+    height: 560px;    
+}
+
+hr{
+     background: rgb(112, 111, 111);     
+}
+
+.card-title{
+text-align: center;
+
+}
+
+.buttons{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.modal-title{
+    width: 100%;
+    text-align: center;
+  }
+.alignImageModal{
+    text-align: center;}

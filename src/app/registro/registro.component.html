@@ -1,28 +1,40 @@
-<div class="main-div">
-  <div class="card">
-  <div class="card-body center" flex="50" >
-      <form #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm.value)">
-
+<div class="container center-h center-v" >
+  <div class="row" >
+      <div class="col-md-4 mx-auto">
+          <div class="card " >
+              <div class="card-body" >
+      <form #signupForm="ngForm"  autocomplete="off"  (ngSubmit)="onSubmit(signupForm.value)">
+        <h3>Registrate</h3>
+        <span>&nbsp;&nbsp;</span>
           <div class="form-group">
               <label for="correo">Nombre Completo:</label>
+              <em *ngIf="signupForm.controls.nombre?.invalid && (signupForm.controls.nombre?.touched)"> Requerido</em>
               <input (ngModel)="nombre" name="nombre" id="nombre" type="text" class="form-control" required
-                  placeholder="Nombre completo..." />
+              maxlength="30" placeholder="Nombre completo..." />
           </div>
 
           <div class="form-group">
             <label for="contrasena">Correo Electronico:</label>
+            <em *ngIf="signupForm.controls.correo?.invalid && (signupForm.controls.correo?.touched)"> Requerido</em>
             <input (ngModel)="correo" name="correo" id="correo" type="text" class="form-control" required
-                placeholder="Correo electronico..." />
+            maxlength="30" placeholder="Correo electronico..." />
+                <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu correo.</small>
         </div>
 
           <div class="form-group">
               <label for="contrasena">Contraseña:</label>
+              <em *ngIf="signupForm.controls.contrasena?.invalid && (signupForm.controls.contrasena?.touched)"> Requerido</em>
               <input (ngModel)="contrasena" name="contrasena" id="contrasena" type="password" class="form-control" required
-                  placeholder="Contraseña..." />
+              maxlength="30" placeholder="Contraseña..." />
           </div>
-          <button type="submit" class="btn btn-primary"  >Entrar</button>
+
           <span>&nbsp;&nbsp;&nbsp;</span>
+          <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid"  >Entrar</button>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </form>
     </div>
   </div>
+  </div>
+</div>
 </div>

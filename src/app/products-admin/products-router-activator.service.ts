@@ -5,14 +5,19 @@ import { ProductsAdminService } from './products-admin.service';
 @Injectable()
 
 export class ProductRouterActivator implements CanActivate{
+
 constructor(private router:Router, private productsAdmin: ProductsAdminService){}
 
-canActivate(route : ActivatedRouteSnapshot){
-    let existeProducto=!!this.productsAdmin.getProductById(+route.params['id']).subscribe(res =>{
-    },error=>{ });
-    if(!existeProducto)
-        this.router.navigate(['products']);
 
+canActivate(route : ActivatedRouteSnapshot){
+    this.productsAdmin.getProductById(+route.params['id']).subscribe(res =>{
+       let  existeProducto=!!res;
+        if(!existeProducto)
+            this.router.navigate(['/Notfound']);
+    },error=>{ 
+        console.log(error);
+
+    });
     return true;
 }
 

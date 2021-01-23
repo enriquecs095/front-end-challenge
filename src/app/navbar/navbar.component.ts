@@ -1,9 +1,6 @@
 import {
   Component,
   OnInit,
-  Input,
-  ViewChild,
-  AfterViewInit,
 } from "@angular/core";
 import { Usuario, AuthService } from "../auth-service/auth-service.component";
 import { LoginComponent } from "../login/login.component";
@@ -12,10 +9,13 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-home",
-  templateUrl: "./home.component.html",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"],
+
 })
-export class HomeComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   user : Usuario
+  collapse: boolean = true;
   constructor(private route: ActivatedRoute, private auth: AuthService) {}
 
   ngOnInit() {

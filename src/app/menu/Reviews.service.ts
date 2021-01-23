@@ -14,26 +14,18 @@ export class ReviewsService {
   }
 
   addReviews(id, range, comments) {
-    var aux = new Date();
-    let date =
-      aux.getFullYear().toString() +
-      "/" +
-      aux.getMonth().toString() +
-      "/" +
-      aux.getDay().toString();
     let data: newReviews = <newReviews>{
       valoracion: +range,
       mensaje: comments,
-      fecha: date,
-      productosidproducto: +id,
+      idproducto: +id,
     };
+
     return this.http.post<newReviews[]>(this.APIAddReviews, data).subscribe(
       (res) => {},
       (error) => {
         console.log(error);
       },
       () => {
-        console.log("Que se voto, que se voto");
       }
     );
   }

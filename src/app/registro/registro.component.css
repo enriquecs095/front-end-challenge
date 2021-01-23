@@ -6,14 +6,14 @@ input, button, select, optgroup, textarea {
   width: 250px;
 }
 
-.main-div{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h3{
+  text-align: center;
+
 }
 
-.center{
-  width: 75%;
-  margin: 10px auto;
-}
+form{
+  padding-top: 50px;
+  padding-left: 30px;
+  }
+
+em {float:right; color:#E05C65; padding-left: 10px;}  

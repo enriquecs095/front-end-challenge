@@ -1,32 +1,43 @@
 
-<hr>
-<div class="col-md-6 container" *ngFor="let pr of producto" >
-  <form autocomplete="off" novalidate style="padding-left: 0px;">
-    <h2>Codigo del producto: {{pr?.idProducto}}-{{pr?.menuIdMenu}}</h2>
-    <hr>
+<div class="col-4 container" *ngFor="let pr of producto" >
+  
+  <form #editProductForm="ngForm" (ngSubmit)="editProduct(editProductForm.value,pr.idproducto,pr.idmenu,pr.status)" autocomplete="off" novalidate style="padding-left: 0px;">
+    <span>&nbsp;&nbsp;</span>
+    <h2>Codigo del producto: {{pr?.idmenu}}-{{pr?.idproducto}}</h2>
+    <span>&nbsp;</span>
     <div class="form-group" >
       <label for="Nombre">Nombre del Producto:</label>
-      <input name="nombre" required id="nombre" 
-       type="text" class="form-control" value={{pr?.nombre}} />
+      <em *ngIf="editProductForm.controls.nombre?.invalid && (editProductForm.controls.nombre?.touched)">Requerido</em>
+      <input [ngModel]="pr?.nombre" name="nombre" required id="nombre"
+       type="text" class="form-control" value={{pr?.nombre}}  maxlength="27"/>
     </div>
  
     <div class="form-group">
       <label for="Precio">Precio:</label>
-      <input  name="precio" required id="precio" type="text" class="form-control" value={{pr?.precio}} />
+      <em *ngIf="editProductForm.controls.precio?.invalid && (editProductForm.controls.precio?.touched)">Requerido</em>
+      <input [ngModel]="pr?.precio" name="precio"  required id="precio" type="number" class="form-control" value={{pr?.precio}} />
     </div>
  
-    <div class="form-group">   
-            <label for="Descripcion">Descripcion:</label>
-            <textarea  name="descripcion" id="descripcion" rows="5" cols="30" class="form-control" >{{pr?.descripcion}}</textarea>
+    <div class="form-group">  
+            <label for="Descripcion">Descripción:</label>
+            <em *ngIf="editProductForm.controls.descripcion?.invalid && (editProductForm.controls.descripcion?.touched)">Requerido</em>
+            <textarea [ngModel]="pr?.descripcion" name="descripcion" required type="text" id="descripcion" rows="5" cols="30" 
+            maxlength="130" class="form-control" >{{pr?.descripcion}}</textarea>
     </div>
  
     <div class="form-group" >
       <label for="Url">Url:</label>
-      <input  name="url" required pattern=".*\/.*.(png|jpg)" id="url" type="text" class="form-control" value={{pr?.url}}/>
+      <em *ngIf="editProductForm.controls.url?.invalid && (editProductForm.controls.url?.touched) && editProductForm.controls.url?.errors.required">Requerido</em>
+      <input [ngModel] ="pr?.url"  name="url" required pattern=".*\/.*.(png|jpg)" id="url" type="text" class="form-control" 
+      maxlength="200" value={{pr?.url}}/>
+      <img [src]="editProductForm.controls.url?.value" *ngIf="editProductForm.controls.url?.valid" width="400" height="280"/>
     </div>
- 
-    <button type="submit" class="btn btn-primary" (click)="editProduct(pr)" >Guardar</button>
-    <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+
+    <span>&nbsp;&nbsp;</span>
+    <span>&nbsp;&nbsp;</span>
+    <button type="submit" [disabled]="editProductForm.invalid || (editProductForm.untouched)" class="btn btn-primary"  >Guardar</button>
+    <span>&nbsp;&nbsp;</span>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancelar</button>
  
   </form>
 </div>

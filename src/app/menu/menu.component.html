@@ -7,38 +7,36 @@
 <body>
 <div class="d-flex justify-content-center">
     <div  *ngIf="!load" class="spinner-border" role="status" style="margin-top: 300px;">
-        <span class="sr-only">Loading...</span>
     </div>
 </div>
+
 <div  *ngIf="load" class="container"  styles="margin-top: 0px;">
     <div class="row">
-        <div id="object" class="col-md-4" *ngFor ="let pr of lstProducts; index as i;">
-            <div class="card  Prod Prodhover " >
-                <div>
-                    <img src="{{pr.url}}" alt="" width="347" height="340" >
-                </div>
-                <div hidden>
-                    <output>{{pr.idproducto}}</output>
-                </div>
-                <h3 >{{pr.nombre}}</h3>
-                    <p>
-                        {{pr.descripcion}}
-                    </p>
-                <div class="container">
-                    <div class="row">
-                        <h4 style="margin-right: 40px;">Lps. {{pr.precio}}</h4>
-                        <!-- <input type="number" value="1" min="1" max="1000" step="1" style="margin-left: 40px;"/> -->
+        <div id="object" class="col-md-4" *ngFor ="let pr of lstProducts | orderBy: 'idproducto'; index as i;">
+            <div class="card  Prod Prodhover ">
+                    <img class="card-img-top" src="{{pr.url}}" alt="" width="347" height="290" >
+                <div class="card-body">
+                    <div hidden>
+                        <output>{{pr.idproducto}}</output>
                     </div>
+                    <h4 class="card-title">{{pr.nombre}}</h4>
+                    <p class="card-text">{{pr.descripcion}}</p>
+                </div>
+                <hr> 
+                <div class="container">
+                     <h4 class="card-text" >Lps.  {{pr.precio | number:'3.1-5'}}</h4>
                 </div>
                 <div class="container">
                 <div class="row buttons">
-                    <button  *ngIf="auth.estaAutenticado()" type="button" class="btn btn-primary" (click)="agregarCarrito(pr)">Añadir</button>
-                    <button type="button" class="btn btn-info" (click)="showReviews(pr)" data-toggle="modal" data-target="#reviewsModal" style="margin-left:50px;">Reviews
+                    <button  *ngIf="auth.estaAutenticado() && !auth.esAdmin() " type="button" class="btn btn-primary" (click)="agregarProducto(pr)">Añadir  </button>
+                    <button type="button" class="btn btn-info" (click)="showReviews(pr)" data-toggle="modal" data-target="#reviewsModal" style="margin-left:60px;">Reseñas
                     </button>
                 </div>
                 </div>
             </div>
+
             <!--My modal-->
+            <div clas="container">
             <div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content modal-bodyscroll">
@@ -49,7 +47,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                        <div style="margin-right: 30px; margin-left: 80px;">
+                        <div class="alignImageModal">
                             <img src="{{url}}" alt="" width="300" height="280" >
                         </div>
                         <div *ngIf="lstReviews?.length==0">
@@ -60,7 +58,7 @@
                         </div>
                     <div *ngIf="lstReviews?.length>0" style="overflow-y : scroll;">
                         <div *ngFor ="let rv of lstReviews; index as i;">
-                            <h6 style="color: brown">___________________________________________________________________</h6>
+                            <hr>
                             <p>
                                 {{rv.mensaje}}
                             </p>
@@ -68,20 +66,7 @@
                             <output>Valoracion: {{rv.valoracion}}/10</output>  
                         </div>
                     </div>
-                        <h6 style="color: brown">____________________________________________________________________</h6>
-                    <div class="container" id="esconder">  
-                        <textarea id="comment"
-                            name="comentarios" rows="3" cols="49" style="margin: 20px;">
-                        </textarea>
-                            <div class="row" style="margin-top: 10px; margin-left: 60px; margin-bottom: 40px;">
-                                <output style="margin-right: 40px;">Valoracion:</output>
-                                <input id="range" type="number" value="0" min="0" max="10" step="1"/>
-                            </div>
-                            <div class="row" style="margin-top: 10px; margin-left: 100px;" >
-                                    <button type="button" class="btn btn-primary" style="margin-right: 45px;" (click)="addReviews()">Finalizar</button>
-                                    <button type="button" class="btn btn-primary" (click)="hideOptionReview()" >Cancelar</button>
-                            </div>
-                    </div>
+                    
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -89,6 +74,7 @@
                   </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
