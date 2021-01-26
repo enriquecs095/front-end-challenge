@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter, OnInit } from "@angular/core";
 import * as signalR from "@aspnet/signalr";
 import { HttpClient } from "@angular/common/http";
-import { AuthService, Usuario } from "../auth-service/auth-service.component";
-import { Console } from "console";
+import { AuthService } from "../auth-service/auth-service.component";
+import { OnUsuario } from "../auth-service/auth-service";
 
 @Injectable()
 export class SignalRService {
@@ -12,13 +12,13 @@ export class SignalRService {
   private API = "http://localhost:5000/message";
   connectionEstablished = new EventEmitter<Boolean>();
   messageReceived = new EventEmitter<Mensajes>();
-  usuario: Usuario;
+  usuario: OnUsuario;
 
   constructor(private http: HttpClient, private authService: AuthService) {
     //this.createConnection();
     // this.registerOnServerEvents();
     // this.startConnection();
-    this.usuario = authService.getUser();
+    this.usuario = authService.getUser();//chequear aqui tambien
   }
 
   createConnection() {

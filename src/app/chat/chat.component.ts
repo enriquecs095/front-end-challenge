@@ -1,9 +1,7 @@
-import { Component, OnInit, Injectable, NgZone } from "@angular/core";
-import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr";
+import { Component, OnInit, NgZone } from "@angular/core";
 import { SignalRService, Mensajes } from "./signalR.service";
-import { HttpClient } from "@angular/common/http";
-import { AuthService, Usuario } from "../auth-service/auth-service.component";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { AuthService } from "../auth-service/auth-service.component";
+import { OnUsuario } from "../auth-service/auth-service";
 
 @Component({
   selector: "app-chat",
@@ -13,7 +11,7 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 export class ChatComponent implements OnInit {
   mensaje;
   messages = new Array<Mensajes>();
-  user: Usuario;
+  user: OnUsuario;
   chats;
   cerrar = true;
   idUser;
@@ -24,7 +22,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
+    this.user= this.authService.getUser();//chequear aqui crear interface login user
     if (this.user[0].rol == 1) {
       //Extraer Chat de clientes
       this.signalR.getChatClient(this.user[0].idUsuario).subscribe(

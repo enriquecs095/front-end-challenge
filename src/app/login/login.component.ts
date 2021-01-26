@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import { Usuario, AuthService } from "../auth-service/auth-service.component";
+import { AuthService } from "../auth-service/auth-service.component";
+import { Usuario_Logging } from "../auth-service/auth-service";
 
 @Component({
   selector: "app-login",
@@ -11,12 +12,7 @@ import { Usuario, AuthService } from "../auth-service/auth-service.component";
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit(form) {
-    var usuario: Usuario = <Usuario>{
-      correo: form.correo,
-      contrasena: form.contrasena,
-      rol: 0,
-    };
-    this.authService.loginUser(usuario);
+  onSubmit(form: Usuario_Logging) {
+    this.authService.loginUser(form);
   }
 }

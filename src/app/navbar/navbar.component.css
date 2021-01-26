@@ -33,3 +33,20 @@ a.navihover.styleMenu:hover{
     cursor: pointer;
     text-decoration: underline;     
 }
+
+.dropdown{
+    min-width: 10px
+}
+
+.dropdown-hover:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; 
+    min-width: 10px
+ }
+/*
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }*/

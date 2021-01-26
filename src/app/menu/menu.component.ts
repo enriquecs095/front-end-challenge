@@ -3,14 +3,16 @@ import { ProductsListService } from "./Products.service";
 import { ReviewsService } from "./Reviews.service";
 import { SendProductsService } from "../compras/sendProducts.service";
 import { AuthService } from '../auth-service/auth-service.component';
+import {Product} from './Producto';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "menu4-class",
+  selector: "menu-class",
   templateUrl: "./menu.component.html",
   styleUrls: ["./menu.component.css"]
 
 })
-export class Menu4Component implements OnInit {
+export class MenuComponent implements OnInit {
   lstProducts: any;
   lstReviews: any;
   url: string;
@@ -24,12 +26,19 @@ export class Menu4Component implements OnInit {
     private productsList: ProductsListService,
     private reviews: ReviewsService,
     private carritoService: SendProductsService,
-    public auth: AuthService
+    public auth: AuthService,
+    private route: ActivatedRoute,
   ) {}
+
+
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+    }
+
 
   ngOnInit() {
     setTimeout(()=>{
-    this.productsList.getProducts(4).subscribe(
+    this.productsList.getProducts(+this.route.snapshot.params['id']).subscribe(
       (res) => {
         this.lstProducts = res;
       },
@@ -40,16 +49,12 @@ export class Menu4Component implements OnInit {
     this.load =true;
     },700
     )
-
-
   }
 
-  showReviews(pr) {
-    this.hideOptionReview();
-    this.url = pr.url;
-    this.nombre = pr.nombre;
-    this.id = pr.idProducto;
-    this.reviews.getReviews(pr.idProducto).subscribe(
+  showReviews(pr: Product) {
+    this.url=pr.url;
+    this.nombre=pr.nombre;
+    this.reviews.getReviews(pr.idproducto).subscribe(
       (res) => {
         this.lstReviews = res;
       },
@@ -59,26 +64,10 @@ export class Menu4Component implements OnInit {
     );
   }
 
-  addReviews() {
-    this.range = (document.getElementById("range") as HTMLInputElement).value;
-    this.comments = (document.getElementById(
-      "comment"
-    ) as HTMLInputElement).value;
-    this.reviews.addReviews(this.id, this.range, this.comments);
-    this.hideOptionReview();
-  }
-
-  agregarCarrito(producto) {
+  agregarProducto(producto) {
     this.carritoService.agregarProducto(producto);
   }
 
-  hideOptionReview() {
-    document.getElementById("esconder").style.display = "none";
-  }
-
-  showOptionReview() {
-    document.getElementById("esconder").style.display = "inline";
-  }
 
 
 }

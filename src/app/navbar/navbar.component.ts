@@ -1,11 +1,9 @@
 import {
   Component,
-  OnInit,
+  OnInit
 } from "@angular/core";
-import { Usuario, AuthService } from "../auth-service/auth-service.component";
-import { LoginComponent } from "../login/login.component";
-import { Subscription } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "../auth-service/auth-service.component";
+import { MenuService } from "./navbar.service";
 
 @Component({
   selector: "app-home",
@@ -14,15 +12,30 @@ import { ActivatedRoute } from "@angular/router";
 
 })
 export class NavbarComponent implements OnInit {
-  user : Usuario
+  user : string;
   collapse: boolean = true;
-  constructor(private route: ActivatedRoute, private auth: AuthService) {}
+  lstMenu: any;
+
+
+  constructor(
+     private auth: AuthService,
+     private menuService: MenuService) {
+     }
+     
+     
 
   ngOnInit() {
     this.user = this.auth.getUser();
-     console.log(this.auth.getUser());
+    this.menuService.getMenu().subscribe(
+      (res)=>{
+        this.lstMenu=res;
+      },
+      (error)=> {
+        console.log(error);
+      });
   }
+
   Logout() {
-    this.auth.user = null;
+    this.auth.logOut();
   }
 }

@@ -1,5 +1,5 @@
 
-export class newReviews{
+export interface newReviews{
     valoracion: number;
     mensaje: string;
     fecha: Date;
@@ -7,7 +7,7 @@ export class newReviews{
 }
 
 
-export class newProduct{
+export interface newProduct{
     precio: number;
     nombre:string;
     Idmenu: number;
@@ -17,7 +17,7 @@ export class newProduct{
 }
 
 
-export class Product{
+export interface Product{
     idproducto:number;
     precio: number;
     nombre:string;
@@ -27,22 +27,4 @@ export class Product{
     status:number;
 }
 
-export class lstCarrito{
-    idProducto:number;
-    precio: number;
-    nombre:string;
-    IdMenu: number;
-    descripcion: string;
-    url: string;
-}
-
-export interface Carrito {
-    idProducto: number;
-    nombre: string;
-    descripcion: string;
-    precioUnitario: number;
-    total: number;
-    url: string;
-    cantidad: number;
-  }
 

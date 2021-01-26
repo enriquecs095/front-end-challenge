@@ -2,73 +2,79 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import { catchError } from "rxjs/operators";
-import { Observable, throwError } from "rxjs";
+import { OnUsuario,Usuario_Nuevo, Usuario_Logging } from "./auth-service";
+
 @Injectable()
 export class AuthService {
   private API = "http://localhost:5000/api/Admin/";
-  user: Usuario;
+  user: OnUsuario;
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
-  loginUser(usuario: Usuario) {
+  loginUser(usuario: Usuario_Logging) {
     let hdrs = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
       }),
     };
-    return this.http.post<Usuario>(this.API +"Login", usuario, hdrs).subscribe(
-      (res) => {
+    return this.http.post<OnUsuario>(this.API +"Login", usuario, hdrs).subscribe(
+      (res: OnUsuario) => {
         this.user = res;
-        console.log("Usuario Log In:", res);
       },
       (error) => {
-        this.toastr.warning("Error: Usuario Invalido", "Usuario!");
+        this.toastr.warning("Error: Correo o contraseña Invalido", "Usuario!");
       },
       () => {
         if (this.user[0].rol == 1) {
-          this.toastr.success("Usuario Logeado Correctamente!", "Bienvenido!");
-          this.router.navigate(["/Home"]);
+          this.toastr.success("Usuario Logueado Correctamente!", "Bienvenido!");
         } else if (this.user[0].rol == 2) {
           this.toastr.success(
             "Administrador Logeado Correctamente!",
             "Bienvenido!"
           );
-          this.router.navigate(["/Home"]);
         }
+        sessionStorage.setItem('user_log',JSON.stringify(this.user[0]));
+        this.router.navigate(["/Home"]);
       }
     );
   }
+  
   getUser() {
-    return this.user;
+    return  JSON.parse(sessionStorage.getItem('user_log'));
   }
+
   estaAutenticado() {
-    return !!this.user;
+    return sessionStorage.length>0 ? true :false;
   }
   
   esAdmin(){
-    if (this.user[0].rol==2){
-      return true;
-    }
-    return false;
+    let usuario: OnUsuario=JSON.parse(sessionStorage.getItem('user_log'));
+    return usuario.rol==2 ? true :false;
   }
 
-  registrarUser(usuario: Usuario_Reg) {
+  logOut(){
+    sessionStorage.clear();
+    this.toastr.success("Sesion cerrada!", "Vuelve!");
+    this.router.navigate(["/Home"]);
+
+  }
+
+  registrarUser(usuario: Usuario_Nuevo) {
     let hdrs = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
       }),
     };
-    return this.http.post<Usuario_Reg>(this.API+"Registro", usuario, hdrs).subscribe(
+    return this.http.post<Usuario_Nuevo>(this.API+"Registro", usuario, hdrs).subscribe(
       (res) => {
         this.toastr.success("Usuario creado Correctamente!", "Bienvenido!");
         this.router.navigate(["/Login"]);
       },
       (error) => {
-        this.toastr.warning("Error: Usuario ya existe", "Usuario!");
+        this.toastr.warning("Error: Correo electronico ya existe", "Usuario!");
       },
       () => {
         this.router.navigate(["/Login"]);
@@ -76,17 +82,4 @@ export class AuthService {
       }
     );
   }
-}
-export interface Usuario {
-  correo: string;
-  contrasena: string;
-  rol: number;
-  idUsuario: number;
-  
-}
-
-export interface Usuario_Reg {
-  Correo: string;
-  Nombre: string;
-  Contrasena: string;
 }

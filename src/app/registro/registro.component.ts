@@ -3,7 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { AuthService, Usuario_Reg } from '../auth-service/auth-service.component';
+import { AuthService } from '../auth-service/auth-service.component';
+import { Usuario_Nuevo } from '../auth-service/auth-service';
 
 @Component({
   selector: 'app-registro',
@@ -24,10 +25,10 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(form) {
-    var usuario: Usuario_Reg = <Usuario_Reg>{
-      Correo: form.correo,
-      Contrasena: form.contrasena,
-      Nombre: form.nombre,
+    var usuario: Usuario_Nuevo = <Usuario_Nuevo>{
+      correo: form.correo,
+      contrasena: form.contrasena,
+      nombre: form.nombre,
     };
     this.authService.registrarUser(usuario);
   }

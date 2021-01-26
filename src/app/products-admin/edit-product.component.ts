@@ -51,7 +51,7 @@ ngOnInit(){
 
 
 editProduct(form: Product,idproducto:number,idmenu:number,status:number){
-    form.Idproducto=idproducto;
+    form.idproducto=idproducto;
     form.Idmenu=idmenu;
     form.status=status;
     console.log(form);

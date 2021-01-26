@@ -5,9 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppComponent } from './app.component';
-import { Menu1Component } from './menu/menu1.component';
-import { Menu2Component } from './menu/menu2.component';
-import { Menu3Component } from './menu/menu3.component';
+import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { SlideShowComponent } from './slideshow/slideshow.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -30,17 +28,16 @@ import { SendProductsService } from './compras/sendProducts.service';
 import { PagosService } from './compras/pagos.service';
 import { RegistroComprasComponent } from './registro-compras/registro.component';
 import { DetalleOrdenComponent } from './registro-compras/detalle-orden/detalle.orden.component';
-import { Menu4Component } from './menu/menu4.component';
 import {ArraySortPipe} from './sort/sort.pipe'
 import {PageNotFound} from './not-found/404-error.component'
+import { MenuService } from './navbar/navbar.service';
+import { MenuRouterActivator } from './menu/menu-router-activator.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    Menu1Component,
-    Menu2Component,
-    Menu3Component,
+    MenuComponent,
     FooterComponent,
     RegistroComponent,
     SlideShowComponent,
@@ -52,7 +49,6 @@ import {PageNotFound} from './not-found/404-error.component'
     listCarritoComponent,
     RegistroComprasComponent,
     DetalleOrdenComponent,
-    Menu4Component,
     ArraySortPipe,
     PageNotFound
   ],
@@ -67,7 +63,7 @@ import {PageNotFound} from './not-found/404-error.component'
   ],
   exports:[RouterModule],
   providers: [SignalRService,AuthService,
-    ProductsListService,ReviewsService,ProductsAdminService,ProductRouterActivator,
+    ProductsListService,ReviewsService,ProductsAdminService,ProductRouterActivator,MenuService,MenuRouterActivator,
     {provide: 'canDeactivateCreateProduct', useValue: checkForm},SendProductsService,PagosService
 ],
   bootstrap: [AppComponent]

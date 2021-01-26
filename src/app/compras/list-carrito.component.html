@@ -11,7 +11,7 @@
         <div class="card wish-list mb-3">
           <div class="card-body">
   
-            <h5 class="mb-4">Carrito de Compras ({{listaProductos.length}})</h5>
+            <h5 class="mb-4">Carrito de Compras ()</h5>
             <!-- Inserto de productos -->
             <div class="row mb-4" *ngFor ="let producto of listaProductos">
               <div class="col-md-5 col-lg-3 col-xl-3">
@@ -31,13 +31,11 @@
                     <div>
                       <div class="def-number-input number-input safari_only mb-0 w-100">
                         Cantidad:
-                        <input id="valor{{producto.idProducto}}" type="number" value="{{producto.cantidad}}"  min="1" (click)="cambiarTotal(producto)"/>
-
+                        <input id="cantidad" type="number" value="{{producto.cantidad}}"  min="1" (click)="cambiarTotal(producto)"/>
                       </div>
                       <small id="passwordHelpBlock" class="form-text text-muted text-center">
                       </small>
                     </div>
-
 
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
@@ -45,7 +43,7 @@
                       <a type="button" class="card-link-secondary small text-uppercase mr-3"  (click)= "borrarProducto(producto)"><i
                           class="fas fa-trash-alt mr-1"></i> Eliminar Producto </a>
                     </div>
-                    <p class="mb-0"><span><strong>Lps. {{producto.precioUnitario | number:'3.1-5'}}</strong></span></p>
+                    <p class="mb-0"><span><strong>Lps. {{producto.precio | number:'3.1-5'}}</strong></span></p>
                   </div>
                 </div>
               </div>
@@ -99,10 +97,10 @@
   
             <h5 class="mb-3">Total a Pagar es</h5>
   
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+            <ul  class="list-group list-group-flush">
+              <li  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                 Subtotal
-                <span>Lps. {{getTotalPago() | number:'3.1-5'}}</span>
+                <span >Lps. {{totalPedido | number:'3.1-5'}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                 Envio
@@ -115,7 +113,7 @@
                     <p class="mb-0">(including TAX)</p>
                   </strong>
                 </div>
-                <span><strong>Lps. {{getTotalPago() | number:'3.1-5'}}</strong></span>
+                <span><strong>Lps. {{totalPedido | number:'3.1-5'}}</strong></span>
               </li>
             </ul>
   
