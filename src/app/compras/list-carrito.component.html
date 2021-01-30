@@ -1,38 +1,42 @@
 <!--Section: Block Content-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <section>
+    <div class="row" styles="margin-top: 1px;">
 
-    <!--Grid row-->
-    <div class="row">
-  
       <!--Grid column-->
-      <div class="col-lg-8">
-  
+      <div  class="col-lg-8">
+        
         <!-- Card -->
         <div class="card wish-list mb-3">
-          <div class="card-body">
-  
-            <h5 class="mb-4">Carrito de Compras ()</h5>
+
+          <div  class="card-body">
+            <h2 *ngIf="!listaProductos?.length" class="mb-4">Carrito de Compras vacio, Compra!!</h2>
+
+            <h2 *ngIf="listaProductos?.length" class="mb-4">Carrito de Compras: ({{listaProductos?.length}})</h2>
             <!-- Inserto de productos -->
-            <div class="row mb-4" *ngFor ="let producto of listaProductos">
-              <div class="col-md-5 col-lg-3 col-xl-3">
+            <div  class="row mb-4" *ngFor ="let producto of listaProductos">
+              <div *ngIf="listaProductos?.length" class="col-md-5 col-lg-3 col-xl-3">
                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                   <img class="img-fluid w-100"
                     src="{{producto.url}}" alt="Sample">
                 </div>
               </div>
-              <div class="col-md-7 col-lg-9 col-xl-9">
+              <div *ngIf="listaProductos?.length" class="col-md-7 col-lg-9 col-xl-9">
                 <div>
                   <div class="d-flex justify-content-between">
                     <div>
-                      <h2>{{producto.nombre}}</h2>
-                      <h1 class="mb-2 text-muted text-uppercase small">{{producto.descripcion}}</h1>
-                      <!-- <p class="mb-3 text-muted text-uppercase small">Size: M</p> -->
+                      <h2 class="room">{{producto?.nombre}}</h2>
+                      <h1 class="mb-2 text-muted text-uppercase small">{{producto?.descripcion}}</h1>
                     </div>
                     <div>
-                      <div class="def-number-input number-input safari_only mb-0 w-100">
-                        Cantidad:
-                        <input id="cantidad" type="number" value="{{producto.cantidad}}"  min="1" (click)="cambiarTotal(producto)"/>
-                      </div>
+                      <!-- plus and minus-->
+                      <div class="qty def-number-input number-input safari_only mb-0 w-100">
+                        <span (click)="cambiarTotal(producto.idproducto,producto.cantidad,'minus')" class="minus bg-red">-</span>
+                            <input readonly value="{{producto.cantidad}}" id="{{producto.cantidad}}"  type="number" class="count" name="qty" value="1">
+                        <span  (click)="cambiarTotal(producto.idproducto,producto.cantidad,'plus')" class="plus bg-red">+</span>
+                        </div>
                       <small id="passwordHelpBlock" class="form-text text-muted text-center">
                       </small>
                     </div>
@@ -43,26 +47,21 @@
                       <a type="button" class="card-link-secondary small text-uppercase mr-3"  (click)= "borrarProducto(producto)"><i
                           class="fas fa-trash-alt mr-1"></i> Eliminar Producto </a>
                     </div>
-                    <p class="mb-0"><span><strong>Lps. {{producto.precio | number:'3.1-5'}}</strong></span></p>
+                    <p class="mb-0"><span><strong>Lps. {{producto?.precio | number:'3.1-5'}}</strong></span></p>
                   </div>
                 </div>
               </div>
             </div>
 
                     <!-- Fin de ingreso de producto -->
-
-            <hr class="mb-4">
-
-           
+            <hr class="mb-4">       
             <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i>No Aceptamos reembolsos</p>
   
           </div>
         </div>
-        <div class="card mb-3">
-          <div class="card-body">
-  
+        <div   class="card mb-3">
+          <div *ngIf="listaProductos?.length" class="card-body">
             <h5 class="mb-4">Tiempo de llegada</h5>
-  
             <p class="mb-0"> 30 Minutos</p>
           </div>
         </div>
@@ -90,12 +89,12 @@
         </div>
   
       </div>
-      <div class="col-lg-4">
+      <div *ngIf="listaProductos?.length" class="col-lg-4">
   
         <div class="card mb-3">
           <div class="card-body">
   
-            <h5 class="mb-3">Total a Pagar es</h5>
+            <h5 class="mb-3">Total a Pagar es: </h5>
   
             <ul  class="list-group list-group-flush">
               <li  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
@@ -124,7 +123,7 @@
         <!-- Card -->
   
         <!-- Card -->
-        <div class="card mb-3">
+        <div  class="card mb-3">
           <div class="card-body">
   
             <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
@@ -145,7 +144,6 @@
         </div>
   
       </div>
-  
     </div>
   
   </section>

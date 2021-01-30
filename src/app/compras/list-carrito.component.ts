@@ -7,27 +7,35 @@ import { ToastrService } from "ngx-toastr";
 
 @Component({
   templateUrl: "./list-carrito.component.html",
+  styleUrls: ["./list-carrito.component.css"],
 })
 export class listCarritoComponent implements OnInit {
   listaProductos: Carrito ;
-  totalPedido: number;
+  totalPedido: number=0;
   idorden: number;
+  load:boolean=false;
+  nuevaCantidad: number;
 
   constructor(private carritoService: SendProductsService,
               private pagosService: PagosService,
               private router: Router,
               private toastrService: ToastrService,
+              private sendProduct: SendProductsService,
               ) {              
   }
 
 
   ngOnInit() {
+    this.getLista();
+    this.getTotalPago();
+
+  }
+
+  getLista(){
     this.carritoService.getListaCarrito().subscribe(
       (res: Carrito)=>{
       this.listaProductos=res;
     },(error)=>{console.log(error);})
-    this.getTotalPago();
-
   }
 
   borrarProducto(producto) {
@@ -49,9 +57,22 @@ export class listCarritoComponent implements OnInit {
   }
 
 
-  cambiarTotal(producto) {
-    var valor = +(document.getElementById("valor"+producto.idProducto) as HTMLInputElement).value;
-    this.carritoService.cambiarCantidad(producto,valor);
+  cambiarTotal(idproducto:number, cantidad:number, event:string) {
+     if(cantidad==1 && event=="minus"){
+       return;
+     }
+     this.nuevaCantidad=cantidad;
+     (event=='plus') ? this.nuevaCantidad++ :  this.nuevaCantidad--;
+    this.carritoService.cambiarCantidad(idproducto,this.nuevaCantidad).subscribe(
+      (res)=>{
+      },(error)=>{
+      }
+    );
+    setTimeout(()=>{
+       this.getTotalPago();
+       this.getLista();
+    },1000);
+
 
   }
 
@@ -59,7 +80,8 @@ export class listCarritoComponent implements OnInit {
     if(window.confirm("Desea pagar ?")){
       this.enviarOrden();
       this.enviarOrdenDetalle();
-      this.enviarCorreo();       
+      this.enviarCorreo();     
+      this.vaciarCarrito();  
       this.toastrService.success("Compra realizada correctamente!\nSe te ha enviado un correo electronico de confirmacion");
       this.router.navigate(["/Home"]);
 
@@ -77,7 +99,7 @@ export class listCarritoComponent implements OnInit {
   
   enviarOrdenDetalle(){
     setTimeout(()=>{
-    this.pagosService.enviarOdenDetalle(this.listaProductos,this.idorden).subscribe(
+    this.pagosService.enviarOdenDetalle(this.idorden).subscribe(
       (res) => {},
       (error) => {console.log(error);});
     },2000);
@@ -89,6 +111,15 @@ export class listCarritoComponent implements OnInit {
       (res) => {},
       (error) => {console.log(error);});
     },2000);
+  }
+
+  vaciarCarrito(){
+    setTimeout(()=>{
+      this.sendProduct.vaciarCarrito().subscribe(
+        (res) => {},
+        (error) => {console.log(error);});
+      },2000);
+
   }
 
 

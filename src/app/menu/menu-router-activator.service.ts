@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { ProductsListService } from './Products.service';
+import { ProductsListService } from './menu.service';
 
 @Injectable()
 

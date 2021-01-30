@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { newReviews } from "./Producto";
+import { newReviews } from "./menu";
 
 @Injectable()
 export class ReviewsService {
@@ -17,15 +17,12 @@ export class ReviewsService {
     let data: newReviews = <newReviews>{
       valoracion: +range,
       mensaje: comments,
-      idproducto: +id,
+      idProducto: +id,
     };
 
     return this.http.post<newReviews[]>(this.APIAddReviews, data).subscribe(
       (res) => {},
       (error) => {
-        console.log(error);
-      },
-      () => {
       }
     );
   }

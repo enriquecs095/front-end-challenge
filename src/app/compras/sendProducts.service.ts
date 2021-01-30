@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Product } from "../menu/Producto";
+import { Product } from "../menu/menu";
 import { ToastrService } from 'ngx-toastr';
 import { Carrito, lstCarrito } from "./list-carrito";
 import { AuthService } from "../auth-service/auth-service.component";
 import { OnUsuario } from "../auth-service/auth-service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class SendProductsService {
@@ -14,6 +15,8 @@ export class SendProductsService {
   private APIgetListaCarrito="http://localhost:5000/api/Pagos/GetListaCarrito";
   private APIdeleteDeLista="http://localhost:5000/api/Pagos/EliminarDelCarrito";
   private APIgetTotalCarrito="http://localhost:5000/api/Pagos/GetTotalCarrito";
+  private APIUpdateTotal="http://localhost:5000/api/Pagos/ActualizarTotal";
+  private APIVaciarCarrito="http://localhost:5000/api/Pagos/VaciarCarrito";
 
   constructor(private http: HttpClient,
               private toastrService:ToastrService,
@@ -50,25 +53,24 @@ export class SendProductsService {
 
   eliminarProductoDeLista(producto: Carrito){
     this.usuarioLog = this.auth.getUser();
-    console.log(producto);
       this.http.delete(this.APIdeleteDeLista+producto.idLista).subscribe(
       (res)=>{
         this.toastrService.success("Eliminado!");
       },(error)=>{
+      }
+    );
+}
+
+  cambiarCantidad(idproducto: number, cantidad: number): Observable<number> {
+    this.usuarioLog = this.auth.getUser();
+    return this.http.put<number>(this.APIUpdateTotal+"/"+this.usuarioLog.idusuario+"/"+idproducto+"/"+cantidad,null);
   }
-);
+
+  vaciarCarrito(): Observable<number> {
+    this.usuarioLog = this.auth.getUser();
+    return this.http.delete<number>(this.APIVaciarCarrito+"/"+this.usuarioLog.idusuario);
   }
 
 
-
-  cambiarCantidad(producto: Carrito, cantidad: number) {
-    /*var data = this.listaProductos.find(function (element) {
-      return element.idProducto == producto.idProducto;
-    });
-    if (data != null) {
-      data.cantidad = cantidad;
-      data.total = data.cantidad * data.precio;
-    }*/
-  }
 }
 

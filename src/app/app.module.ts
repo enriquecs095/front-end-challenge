@@ -20,7 +20,7 @@ import { ProductsComponent } from './products-admin/products-admin.component';
 import { EditProductComponent } from './products-admin/edit-product.component';
 import { ProductRouterActivator } from './products-admin/products-router-activator.service';
 import { AddProductComponent } from './products-admin/add-product.component';
-import { ProductsListService } from './menu/Products.service';
+import { ProductsListService } from './menu/menu.service';
 import { ReviewsService } from './menu/Reviews.service';
 import { ProductsAdminService } from './products-admin/products-admin.service';
 import { listCarritoComponent } from './compras/list-carrito.component';

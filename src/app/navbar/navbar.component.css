@@ -43,6 +43,10 @@ a.navihover.styleMenu:hover{
     margin-top: 0; 
     min-width: 10px
  }
+
+ .separate-navbar{
+    padding-bottom: 117px;
+ }
 /*
 .navbar {
     position: fixed;

@@ -18,7 +18,7 @@
             </thead> 
             <tbody> 
           <tr *ngFor="let detalles of listaDetalles">
-          <td> {{detalles.productosIdProducto}}</td> 
+          <td> {{detalles.idProducto}}</td> 
           <img *ngIf="detalles.url"
           [src]="detalles.url"
           [style.width.px]="100"
@@ -28,8 +28,9 @@
           <td>{{detalles.totalProducto}}</td> 
           <td>{{detalles.precio}}</td> 
 
-          <td><button class="btn btn-primary" type="submit" id="ed1" title="Editar" style="width: 100px;" data-toggle="modal" data-target="#reviewsModal" (click)="img(detalles.url,detalles.nombre,detalles.productosIdProducto)">Ingresar Review</button>
+          <td><button class="btn btn-primary" type="submit" id="ed1" title="Editar" style="width: 100px;" data-toggle="modal" data-target="#reviewsModal" (click)="img(detalles.url,detalles.nombre,detalles.idProducto)">Ingresar Review</button>
           
+         <div class="container">
             <div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content modal-bodyscroll">
@@ -40,33 +41,16 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                        <div style="margin-right: 30px; margin-left: 80px;">
+                        <div class="alignImageModal">
                             <img src="{{this.url}}" alt="" width="300" height="280" >
                         </div>
-                        <div *ngIf="lstReviews?.length==0">
-                            <p style="size:10; margin-top: 20px;">
-                                No hay reviews. Se el primero en comentar sobre este producto. Aceptamos
-                                la libre expresion.
-                            </p>    
-                        </div>
-                    <div *ngIf="lstReviews?.length>0" style="overflow-y : scroll;">
-                        <div *ngFor ="let rv of lstReviews; index as i;">
-                            <h6 style="color: brown">___________________________________________________________________</h6>
-                            <p>
-                                {{rv.mensaje}}
-                            </p>
-                            <output style="margin-right: 10px;">Fecha: {{rv.fecha}}</output>
-                            <output>Valoracion: {{rv.valoracion}}/10</output>  
-                        </div>
-                    </div>
                         <h6 style="color: brown">____________________________________________________________________</h6>
-                    <div class="container" id="esconder">  
-                        <textarea id="comment"name="comentarios" rows="3" cols="49" style="margin: 20px;"></textarea>
+                    <div class="container">  
+                        <textarea id="comment"name="comentarios" rows="3" cols="49" style="margin: 20px;" maxlength="300"></textarea>
                             <div class="row" style="margin-top: 10px; margin-left: 60px; margin-bottom: 40px;">
                                 <output style="margin-right: 40px;">Valoracion:</output>
                                 <input id="range" type="number" value="0" min="0" max="10" step="1"/>
                             </div>
-                      
                     </div>
                     </div>
                     <div class="modal-footer">
@@ -74,14 +58,15 @@
                             <button type="button" class="btn btn-primary" (click)="addReviews()" data-dismiss="modal">Aceptar</button>
                     </div>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <!-- <button type="button" class="btn btn-primary" (click)="showOptionReview()">Agregar Review</button> -->
                     </div>
                   </div>
                 </div>
             </div>
-            <!-- <td><button class="btn btn-danger" type="submit" id="ed2" title="Editar" style="width: 100px;">Cerrar chat</button> -->
+        </div>
             </tbody> 
         </table> 
+
+        
         </div> 
     </body> 
     </html>

@@ -4,13 +4,19 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
-<body>
+
+<!--
 <div class="d-flex justify-content-center">
     <div  *ngIf="!load" class="spinner-border" role="status" style="margin-top: 300px;">
     </div>
+</div>-->
+
+<div *ngIf="lstProducts?.length==0" class="separate-message">
+    <h5>No hay productos disponibles por el momento.</h5>
 </div>
 
-<div  *ngIf="load" class="container"  styles="margin-top: 0px;">
+<body>
+<div class="container"  styles="margin-top: 0px;">
     <div class="row">
         <div id="object" class="col-md-4" *ngFor ="let pr of lstProducts | orderBy: 'idproducto'; index as i;">
             <div class="card  Prod Prodhover ">
@@ -36,7 +42,7 @@
             </div>
 
             <!--My modal-->
-            <div clas="container">
+            <div class="container">
             <div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content modal-bodyscroll">
@@ -62,7 +68,7 @@
                             <p>
                                 {{rv.mensaje}}
                             </p>
-                            <output style="margin-right: 10px;">Fecha: {{rv.fecha}}</output>
+                            <output style="margin-right: 10px;">Fecha: {{rv.fecha | date: 'dd/MM/yyyy'}}</output>
                             <output>Valoracion: {{rv.valoracion}}/10</output>  
                         </div>
                     </div>

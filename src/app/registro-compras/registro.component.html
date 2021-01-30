@@ -15,11 +15,11 @@
 		</thead> 
 		<tbody> 
       <tr *ngFor="let orden of listaOrdenes">
-	  <td> {{orden.idOrden}}</td> 
-      <td>{{orden.fechaOrden}}</td> 
-      <td>{{orden.totalOrden}}</td>
+	  <td> {{orden.idorden}}</td> 
+      <td>{{orden.fechaorden | date:'medium'}}</td> 
+      <td>{{orden.totalorden}}</td>
       <!-- <td *ngIf="chat.status == '1'">{{chat.status}}</td>  -->
-      <td><button class="btn btn-primary" type="submit" id="ed1" title="Editar" style="width: 100px;" [routerLink]="['detalle/' , orden.idOrden]">Abrir Detalles</button>
+      <td><button class="btn btn-primary" type="submit" id="ed1" title="Editar" style="width: 100px;" [routerLink]="['detalle/',orden.idorden]">Abrir Detalles</button>
       <!-- <td><button class="btn btn-danger" type="submit" id="ed2" title="Editar" style="width: 100px;">Cerrar chat</button> -->
 		<!-- </tr>  -->
 		</tbody> 

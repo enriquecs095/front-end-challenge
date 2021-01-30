@@ -32,5 +32,10 @@ export class RegistroComponent implements OnInit {
     };
     this.authService.registrarUser(usuario);
   }
+
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+
+    }
 }
 

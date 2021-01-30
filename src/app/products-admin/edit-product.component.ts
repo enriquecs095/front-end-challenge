@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import { ProductsAdminService } from './products-admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from '../menu/Producto';
+import { Product } from '../menu/menu';
 
 
 @Component({
@@ -65,5 +65,10 @@ editProduct(form: Product,idproducto:number,idmenu:number,status:number){
 cancel(){
      return this.router.navigate(['products']);
 }
+
+ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+
+    }
 
 }

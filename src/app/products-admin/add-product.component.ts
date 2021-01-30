@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsAdminService } from './products-admin.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { newProduct } from '../menu/Producto';
+import { newProduct } from '../menu/menu';
 
 
 @Component({
@@ -59,5 +59,10 @@ export class AddProductComponent{
 cancel(){
     this.router.navigate(['products']);
 }
+
+ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+
+    }
 
 }

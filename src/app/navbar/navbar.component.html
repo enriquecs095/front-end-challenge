@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="span">
-    
-  <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nabvar-ux" style="border-bottom: 3px solid currentColor;">
-    <div>
+
+  <nav *ngIf="show" class="navbar navbar-expand-sm navbar-light bg-light" id="nabvar-ux" style="border-bottom: 3px solid currentColor;">
+    <div *ngIf="show"> 
       <img src="assets/fondos/logo.png" class="logo">
     </div>    
     <button class="navbar-toggler" (click)="collapse=!collapse" type="button" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,18 +11,18 @@
   
     <div class="navbar-collapse" (click)="collapse=true" [hidden]="collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="show">
           <a class="nav-link navihover styleMenu" [routerLink]="['/Home' ]" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
         </li>
 
-        <div *ngFor="let m of lstMenu | orderBy: 'idmenu';">
-        <li class="nav-item" >
-          <a class="nav-link navihover styleMenu" (click)="activating()" [routerLink]="['menu/',m?.idmenu]" [queryParams]="{name: m?.nombre}"  [routerLinkActiveOptions]="{exact: true}"
-           routerLinkActive="active">{{m?.nombre}}<span class="sr-only">(current)</span></a>
-        </li> 
+      <div *ngFor="let m of lstMenu | orderBy: 'idmenu';">
+        <li class="nav-item">
+          <a class="nav-link navihover styleMenu" (click)="isActive()" [routerLink]="['menu/',m?.idmenu]" [queryParams]="{name: m?.nombre}"  [routerLinkActiveOptions]="{exact: true}"
+           routerLinkActive="active" >{{m?.nombre}}<span class="sr-only">(current)</span></a>
+        </li>
       </div>
       
-        <li class="nav-item " *ngIf="auth.estaAutenticado()">
+        <li class="nav-item " *ngIf="auth.estaAutenticado() && show">
           <a class="nav-link navihover styleMenu" *ngIf="auth.esAdmin()" [routerLink]="['/products']" routerLinkActive="active">Administrar Productos<span class="sr-only" >(current)</span></a>
         </li>
       </ul>
@@ -34,28 +34,28 @@
             </li>
   
        <!-- here was -->
-            <li  *ngIf="auth.estaAutenticado()">
+            <li  *ngIf="auth.estaAutenticado() && show  ">
               <a style="text-decoration:none;" class="fas fa-headset fa-2x" id="chat-ux" [routerLink]="['/Chat' ]">&nbsp;&nbsp;</a>
             </li>
   
-            <li *ngIf="auth.estaAutenticado()">
+            <li *ngIf="auth.estaAutenticado() && show">
               <a style="text-decoration:none;" *ngIf="!auth.esAdmin()" class="fas fa-cart-plus fa-2x" id="carrito" [routerLink]="['/carrito' ]">&nbsp;&nbsp;</a>
             </li>
             
-            <li *ngIf="auth.estaAutenticado()">
+            <li *ngIf="auth.estaAutenticado() && show" >
               <a style="text-decoration:none;" *ngIf="!auth.esAdmin()" class="fas fa-list-ul fa-2x"  [routerLink]="['/listado']"  id="listado">  &nbsp;&nbsp;</a>
             </li>
             <div class="dropdown dropdown-hover">
-              <a *ngIf="!auth.estaAutenticado()" class="btn dropdown-toggle" data-toggle="dropdown">
+              <a *ngIf="!auth.estaAutenticado() && show " class="btn dropdown-toggle" data-toggle="dropdown">
                 Iniciar Sesion
               </a>
-              <a *ngIf="auth.estaAutenticado()" class="btn dropdown-toggle " data-toggle="dropdown">
+              <a *ngIf="auth.estaAutenticado() && show" class="btn dropdown-toggle " data-toggle="dropdown">
                 Bienvenido!
               </a>
               <ul class="dropdown-menu">
-                <a class="dropdown-item" *ngIf="!auth.estaAutenticado()" [routerLink]="['/Login']">Inicia sesion</a>
-                <a class="dropdown-item" *ngIf="auth.estaAutenticado()">Mi cuenta</a>
-                <a class="dropdown-item" *ngIf="auth.estaAutenticado()" [routerLink]="['/Home']" (click)="Logout()">Cerrar Sesion</a>
+                <a class="dropdown-item" *ngIf="!auth.estaAutenticado() && show" [routerLink]="['/Login']">Inicia sesion</a>
+                <a class="dropdown-item" *ngIf="auth.estaAutenticado() && show">Mi cuenta</a>
+                <a class="dropdown-item" *ngIf="auth.estaAutenticado() && show" [routerLink]="['/Home']" (click)="Logout()">Cerrar Sesion</a>
               </ul>
             </div>
             

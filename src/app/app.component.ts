@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from './auth-service/auth-service.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +6,25 @@ import { AuthService } from './auth-service/auth-service.component';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   disabled: boolean = true;
+  load:boolean=false;
+
   isWeb(){
     return this.disabled;
   }
+
+  ngOnInit(){
+    setTimeout(()=>{
+      this.load=true;
+    },800
+    )
+  }
+
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+    }
+    
 }
 
 

@@ -15,4 +15,10 @@ export class LoginComponent {
   onSubmit(form: Usuario_Logging) {
     this.authService.loginUser(form);
   }
+
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+
+    }
+    
 }

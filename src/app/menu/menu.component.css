@@ -1,6 +1,4 @@
 
-
-
 .Prodhover:hover{
     background-color: rgb(235, 25, 18);
 }
@@ -39,9 +37,18 @@ text-align: center;
     margin-left: 50px;
     margin-right: 50px;
 }
+
 .modal-title{
     width: 100%;
     text-align: center;
-  }
+}
+
 .alignImageModal{
-    text-align: center;}
+    text-align: center;
+}    
+
+.separate-message{
+    margin-top:50px;
+    margin-bottom: 308px;
+    text-align: center;
+}

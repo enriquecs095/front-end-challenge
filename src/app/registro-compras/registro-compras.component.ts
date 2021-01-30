@@ -11,7 +11,10 @@ import { Component } from '@angular/core';
 
 export class RegistroComprasComponent{
 
-
+    ngAfterViewChecked() {
+        window.scrollTo(0, 0);
+    
+        }
 
 
 }

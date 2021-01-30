@@ -3,7 +3,7 @@ export interface newReviews{
     valoracion: number;
     mensaje: string;
     fecha: Date;
-    idproducto: number;
+    idProducto: number;
 }
 
 

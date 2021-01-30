@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ProductsAdminService } from './products-admin.service';
 import { RouterLink, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from '../menu/Producto';
+import { Product } from '../menu/menu';
 import {ArraySortPipe} from '../sort/sort.pipe'
 
 @Component({

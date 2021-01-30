@@ -20,5 +20,3 @@ export interface Carrito {
     totalorden:number;
 
   }
-
-  

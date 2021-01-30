@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductsListService } from "./Products.service";
+import { ProductsListService } from "./menu.service";
 import { ReviewsService } from "./Reviews.service";
 import { SendProductsService } from "../compras/sendProducts.service";
 import { AuthService } from '../auth-service/auth-service.component';
-import {Product} from './Producto';
+import { Product } from './menu';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -12,6 +12,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./menu.component.css"]
 
 })
+
 export class MenuComponent implements OnInit {
   lstProducts: any;
   lstReviews: any;
@@ -20,7 +21,8 @@ export class MenuComponent implements OnInit {
   id: string;
   range: string;
   comments: string;
-  load:boolean=false;
+  load: boolean = false;
+  load2:boolean=false;
 
   constructor(
     private productsList: ProductsListService,
@@ -28,32 +30,31 @@ export class MenuComponent implements OnInit {
     private carritoService: SendProductsService,
     public auth: AuthService,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
 
   ngAfterViewChecked() {
     window.scrollTo(0, 0);
-    }
+
+  }
 
 
   ngOnInit() {
-    setTimeout(()=>{
-    this.productsList.getProducts(+this.route.snapshot.params['id']).subscribe(
-      (res) => {
-        this.lstProducts = res;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    this.load =true;
-    },700
-    )
+    setTimeout(() => {
+      this.productsList.getProducts(+this.route.snapshot.params['id']).subscribe(
+        (res) => {
+          this.lstProducts = res;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }, 800)
   }
 
   showReviews(pr: Product) {
-    this.url=pr.url;
-    this.nombre=pr.nombre;
+    this.url = pr.url;
+    this.nombre = pr.nombre;
     this.reviews.getReviews(pr.idproducto).subscribe(
       (res) => {
         this.lstReviews = res;
@@ -63,6 +64,7 @@ export class MenuComponent implements OnInit {
       }
     );
   }
+
 
   agregarProducto(producto) {
     this.carritoService.agregarProducto(producto);
