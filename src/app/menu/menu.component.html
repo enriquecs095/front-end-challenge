@@ -5,12 +5,6 @@
 <title></title>
 </head>
 
-<!--
-<div class="d-flex justify-content-center">
-    <div  *ngIf="!load" class="spinner-border" role="status" style="margin-top: 300px;">
-    </div>
-</div>-->
-
 <div *ngIf="lstProducts?.length==0" class="separate-message">
     <h5>No hay productos disponibles por el momento.</h5>
 </div>
@@ -18,7 +12,7 @@
 <body>
 <div class="container"  styles="margin-top: 0px;">
     <div class="row">
-        <div id="object" class="col-md-4" *ngFor ="let pr of lstProducts | orderBy: 'idproducto'; index as i;">
+        <div id="object" class="col-md-4" *ngFor ="let pr of lstProducts; index as i;">
             <div class="card  Prod Prodhover ">
                     <img class="card-img-top" src="{{pr.url}}" alt="" width="347" height="290" >
                 <div class="card-body">
@@ -30,7 +24,7 @@
                 </div>
                 <hr> 
                 <div class="container">
-                     <h4 class="card-text" >Lps.  {{pr.precio | number:'3.1-5'}}</h4>
+                     <h4 class="card-text" >Lps.  {{pr.precio | number:'1.2-2'}}</h4>
                 </div>
                 <div class="container">
                 <div class="row buttons">

@@ -50,7 +50,7 @@
           <div class="msg_history" >
 
             <!-- caso para cuando el administrador abre el chat -->
-            <div *ngIf="user[0].rol==2">
+            <div *ngIf="user.rol==2">
             <div *ngFor = "let chat of lstMessage" >
             <div class="incoming_msg" *ngIf = "chat.status==1">
               <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -71,7 +71,7 @@
 
 
         <!-- Caso para cuando el cliente abre el chat -->
-        <div *ngIf="user[0].rol==1">
+        <div *ngIf="user.rol==1">
           <div *ngFor = "let chat of lstMessage" >
             <div class="incoming_msg" *ngIf = "chat.status==0">
               <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>

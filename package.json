@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "aws-deploy": "aws s3 sync dist/angular/ s3://angular-deploy"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "@aspnet/signalr": "^1.1.4",
+    "@auth0/angular-jwt": "^5.0.2",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free": "^5.15.2",
     "boostrap": "^2.0.0",

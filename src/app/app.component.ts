@@ -14,16 +14,14 @@ export class AppComponent implements OnInit {
     return this.disabled;
   }
 
+
   ngOnInit(){
     setTimeout(()=>{
       this.load=true;
-    },800
-    )
+    },600)
   }
 
-  ngAfterViewChecked() {
-    window.scrollTo(0, 0);
-    }
+  
     
 }
 

@@ -6,6 +6,7 @@ import { AuthService } from "../auth-service/auth-service.component";
 @Component({
   selector: "slideshow-class",
   templateUrl: "./slideshow.component.html",
+  styleUrls: ["./slideshow.css"]
 })
 export class SlideShowComponent implements OnInit {
   constructor(private auth: AuthService) {}

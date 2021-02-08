@@ -28,7 +28,7 @@ import { newProduct } from '../menu/menu';
 export class AddProductComponent{
     isSave:Boolean=false;
     nombre;
-    menuIdMenu
+    Idmenu
     precio;
     descripcion;
     url;
@@ -60,9 +60,6 @@ cancel(){
     this.router.navigate(['products']);
 }
 
-ngAfterViewChecked() {
-    window.scrollTo(0, 0);
 
-    }
 
 }

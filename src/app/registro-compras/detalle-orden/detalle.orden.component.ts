@@ -33,9 +33,7 @@ export class DetalleOrdenComponent implements OnInit {
     this.http.post(this.API  +this.idOrden,this.idOrden).subscribe(
         (res:ListaOrdenDetalle) => {
             this.listaDetalles = res;
-        },
-        (error) => {}
-      );
+        });
   }
 
   addReviews() {

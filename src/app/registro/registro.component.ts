@@ -16,12 +16,12 @@ export class RegistroComponent implements OnInit {
 
   constructor(private toastr: ToastrService,private router:Router,private authService:AuthService) { }
 
-  user = new FormGroup({
-    correo: new FormControl(''),
-    nombre: new FormControl(''),
-    contrasena: new FormControl('')
-  });
+  nombre:any;
+  correo:any;
+  contrasena:any;
+
   ngOnInit() {
+
   }
 
   onSubmit(form) {

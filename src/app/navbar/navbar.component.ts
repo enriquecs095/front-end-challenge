@@ -1,10 +1,13 @@
+import { HttpHeaders } from "@angular/common/http";
 import {
   Component,
   Input,
   OnInit
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { Observable } from "rxjs";
 import { AuthService } from "../auth-service/auth-service.component";
+import { Menu } from "./navbar";
 import { MenuService } from "./navbar.service";
 
 @Component({
@@ -14,11 +17,9 @@ import { MenuService } from "./navbar.service";
 
 })
 export class NavbarComponent implements OnInit {
-  user : string;
   collapse: boolean = true;
   show:boolean=false;
   lstMenu: any;
-  //load:boolean=false;
   
   constructor(
      private auth: AuthService,
@@ -27,8 +28,7 @@ export class NavbarComponent implements OnInit {
      }
      
      
-  ngOnInit() {
-    this.user = this.auth.getUser();
+  ngOnInit(): Observable<Menu> {
 
     setTimeout(()=>{
     this.menuService.getMenu().subscribe(
@@ -39,9 +39,9 @@ export class NavbarComponent implements OnInit {
         console.log(error);
       });
       this.show=true;
-     // this.load=true;
-    },800
+    },500
     )
+    return this.lstMenu;
   }
 
 

@@ -12,18 +12,18 @@
         <div class="card wish-list mb-3">
 
           <div  class="card-body">
-            <h2 *ngIf="!listaProductos?.length" class="mb-4">Carrito de Compras vacio, Compra!!</h2>
+            <h2  *ngIf="!listaProductos" class="mb-4">Carrito de Compras vacio, Compra!!</h2>
 
-            <h2 *ngIf="listaProductos?.length" class="mb-4">Carrito de Compras: ({{listaProductos?.length}})</h2>
+            <h2 *ngIf="listaProductos" class="mb-4">Carrito de Compras: ({{listaProductos?.length}})</h2>
             <!-- Inserto de productos -->
             <div  class="row mb-4" *ngFor ="let producto of listaProductos">
-              <div *ngIf="listaProductos?.length" class="col-md-5 col-lg-3 col-xl-3">
+              <div *ngIf="listaProductos" class="col-md-5 col-lg-3 col-xl-3">
                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                   <img class="img-fluid w-100"
                     src="{{producto.url}}" alt="Sample">
                 </div>
               </div>
-              <div *ngIf="listaProductos?.length" class="col-md-7 col-lg-9 col-xl-9">
+              <div *ngIf="listaProductos" class="col-md-7 col-lg-9 col-xl-9">
                 <div>
                   <div class="d-flex justify-content-between">
                     <div>
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div   class="card mb-3">
-          <div *ngIf="listaProductos?.length" class="card-body">
+          <div *ngIf="listaProductos" class="card-body">
             <h5 class="mb-4">Tiempo de llegada</h5>
             <p class="mb-0"> 30 Minutos</p>
           </div>
@@ -89,7 +89,7 @@
         </div>
   
       </div>
-      <div *ngIf="listaProductos?.length" class="col-lg-4">
+      <div *ngIf="listaProductos" class="col-lg-4">
   
         <div class="card mb-3">
           <div class="card-body">

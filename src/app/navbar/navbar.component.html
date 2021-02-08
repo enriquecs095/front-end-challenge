@@ -3,19 +3,23 @@
 
   <nav *ngIf="show" class="navbar navbar-expand-sm navbar-light bg-light" id="nabvar-ux" style="border-bottom: 3px solid currentColor;">
     <div *ngIf="show"> 
-      <img src="assets/fondos/logo.png" class="logo">
-    </div>    
+     <a href="http://angular-deploy.s3-website.us-east-2.amazonaws.com/Home"> <img src="assets/fondos/logo.png" class="logo">
+    </a>
+    </div>  
+
     <button class="navbar-toggler" (click)="collapse=!collapse" type="button" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="navbar-collapse" (click)="collapse=true" [hidden]="collapse">
+
       <ul class="navbar-nav mr-auto">
+        <!--
         <li class="nav-item" *ngIf="show">
           <a class="nav-link navihover styleMenu" [routerLink]="['/Home' ]" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
-        </li>
+        </li>-->
 
-      <div *ngFor="let m of lstMenu | orderBy: 'idmenu';">
+      <div *ngFor="let m of lstMenu;">
         <li class="nav-item">
           <a class="nav-link navihover styleMenu" (click)="isActive()" [routerLink]="['menu/',m?.idmenu]" [queryParams]="{name: m?.nombre}"  [routerLinkActiveOptions]="{exact: true}"
            routerLinkActive="active" >{{m?.nombre}}<span class="sr-only">(current)</span></a>

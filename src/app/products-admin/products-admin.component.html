@@ -1,8 +1,9 @@
-<div class="card container">
+
+<div class="card container movefooter">
     <div class="card-header row">
       <label for="tipo">Selecione el tipo de producto:</label>
         <div class="col-sm-2">
-           <select (click)="filtrar()" name="menuIdMenu" required id="menuIdMenu" class="form-control"  placeholder="Seleccione">
+           <select (click)="filtrar()" name="menu IdMenu" required id="menuIdMenu" class="form-control"  placeholder="Seleccione">
             <option selected disabled hidden style='display: none' value=''></option> 
             <option value="1">Pizzas</option> 
              <option value="2">Bebidas</option>
@@ -16,7 +17,7 @@
       <div class="row">
       <div class="table-responsive">
         <table class="table mb-0"
-               *ngIf="lstProducts && lstProducts.length">
+        *ngIf="lstProducts && lstProducts.length" >
           <thead>
             <tr>
             <th>Imagen</th>  
@@ -30,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of lstProducts | orderBy: 'idproducto'">
+            <tr *ngFor="let product of lstProducts">
               <td>
                 <img *ngIf="product.url"
                      [src]="product.url"
@@ -60,8 +61,5 @@
       </div>
     </div>
   </div>
-  
-  <div *ngIf="errorMessage"
-       class="alert alert-danger">
-    Error: {{ errorMessage }}
-  </div>
+
+</div>

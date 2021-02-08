@@ -66,9 +66,4 @@ cancel(){
      return this.router.navigate(['products']);
 }
 
-ngAfterViewChecked() {
-    window.scrollTo(0, 0);
-
-    }
-
 }

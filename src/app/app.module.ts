@@ -26,12 +26,18 @@ import { ProductsAdminService } from './products-admin/products-admin.service';
 import { listCarritoComponent } from './compras/list-carrito.component';
 import { SendProductsService } from './compras/sendProducts.service';
 import { PagosService } from './compras/pagos.service';
-import { RegistroComprasComponent } from './registro-compras/registro.component';
+import { RegistroComprasComponent } from './registro-compras/registro-compras.component';
 import { DetalleOrdenComponent } from './registro-compras/detalle-orden/detalle.orden.component';
 import {ArraySortPipe} from './sort/sort.pipe'
 import {PageNotFound} from './not-found/404-error.component'
 import { MenuService } from './navbar/navbar.service';
 import { MenuRouterActivator } from './menu/menu-router-activator.service';
+import {JwtModule} from '@auth0/angular-jwt';
+import { AuthGuard } from './auth-service/auth-guard.service';
+
+export function tokenGetter(){
+  return sessionStorage.getItem("myserver.com");
+} 
 
 @NgModule({
   declarations: [
@@ -59,12 +65,19 @@ import { MenuRouterActivator } from './menu/menu-router-activator.service';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/"],
+        disallowedRoutes: [],
+      }
+    })
   ],
   exports:[RouterModule],
   providers: [SignalRService,AuthService,
     ProductsListService,ReviewsService,ProductsAdminService,ProductRouterActivator,MenuService,MenuRouterActivator,
-    {provide: 'canDeactivateCreateProduct', useValue: checkForm},SendProductsService,PagosService
+    {provide: 'canDeactivateCreateProduct', useValue: checkForm},SendProductsService,PagosService,AuthGuard
 ],
   bootstrap: [AppComponent]
 })

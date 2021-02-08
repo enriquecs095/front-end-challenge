@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.user= this.authService.getUser();//chequear aqui crear interface login user
-    if (this.user[0].rol == 1) {
+    if (this.user.rol == 1) {
       //Extraer Chat de clientes
       this.signalR.getChatClient(this.user[0].idUsuario).subscribe(
         (result) => {
@@ -61,7 +61,7 @@ export class ChatComponent implements OnInit {
       "mensaje"
     ) as HTMLInputElement).value;
     console.log(this.user);
-    if (this.user[0].rol == 1) {
+    if (this.user.rol == 1) {
       this.signalR.sendMessageToAdmin(this.mensaje);
       this.signalR.sendMessageToAd(this.infoChat.idChat,this.mensaje)
 
@@ -84,7 +84,7 @@ export class ChatComponent implements OnInit {
       this.signalR.hubConnection.stop();
       this.signalR.hubConnection= undefined;
    }
-    if(this.user[0].rol ==1){
+    if(this.user.rol ==1){
       this.signalR.createConnection();
       this.signalR.registerOnServerEvents();
       this.signalR.startConnection(this.user[0].idUsuario);

@@ -47,10 +47,8 @@ a.navihover.styleMenu:hover{
  .separate-navbar{
     padding-bottom: 117px;
  }
-/*
-.navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }*/
+
+
+ img:hover{
+    border: 1px solid rgb(199, 41, 1);
+ }

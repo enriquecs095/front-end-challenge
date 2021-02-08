@@ -7,7 +7,7 @@ import { Product } from './menu';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "menu-class",
+  //selector: "menu-class",
   templateUrl: "./menu.component.html",
   styleUrls: ["./menu.component.css"]
 
@@ -33,12 +33,6 @@ export class MenuComponent implements OnInit {
   ) { }
 
 
-  ngAfterViewChecked() {
-    window.scrollTo(0, 0);
-
-  }
-
-
   ngOnInit() {
     setTimeout(() => {
       this.productsList.getProducts(+this.route.snapshot.params['id']).subscribe(
@@ -46,7 +40,6 @@ export class MenuComponent implements OnInit {
           this.lstProducts = res;
         },
         (error) => {
-          console.log(error);
         }
       );
     }, 800)

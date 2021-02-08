@@ -4,6 +4,7 @@ import { PagosService } from './pagos.service';
 import { Carrito } from "./list-carrito";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Observable } from "rxjs";
 
 @Component({
   templateUrl: "./list-carrito.component.html",
@@ -12,7 +13,7 @@ import { ToastrService } from "ngx-toastr";
 export class listCarritoComponent implements OnInit {
   listaProductos: Carrito ;
   totalPedido: number=0;
-  idorden: number;
+  idorden: any;
   load:boolean=false;
   nuevaCantidad: number;
 
@@ -42,11 +43,6 @@ export class listCarritoComponent implements OnInit {
      this.carritoService.eliminarProductoDeLista(producto);
      window.location.reload()
   }
-
-  ngAfterViewChecked() {
-    window.scrollTo(0, 0);
-
-    }
 
 
   getTotalPago() {
@@ -79,47 +75,38 @@ export class listCarritoComponent implements OnInit {
   pagarProductos(){
     if(window.confirm("Desea pagar ?")){
       this.enviarOrden();
-      this.enviarOrdenDetalle();
-      this.enviarCorreo();     
-      this.vaciarCarrito();  
-      this.toastrService.success("Compra realizada correctamente!\nSe te ha enviado un correo electronico de confirmacion");
-      this.router.navigate(["/Home"]);
-
     }
   }
 
-  enviarOrden(){
-    return this.pagosService.enviarOrden(this.totalPedido).subscribe(
-      (res:number ) => {
+  enviarOrden():Observable<any>{
+    setTimeout(()=>{
+     this.pagosService.enviarOrden(this.totalPedido).subscribe(
+      (res) => {
         this.idorden=res;
-      },
-      (error) => {console.log(error);});;
-
+        this.enviarOrdenDetalle();
+        this.enviarCorreo();     
+        this.vaciarCarrito();  
+      });
+    },2000)
+    return this.idorden;
   }
   
   enviarOrdenDetalle(){
-    setTimeout(()=>{
     this.pagosService.enviarOdenDetalle(this.idorden).subscribe(
-      (res) => {},
-      (error) => {console.log(error);});
-    },2000);
+      (res) => {});
   }
 
   enviarCorreo(){
-    setTimeout(()=>{
     this.pagosService.enviarEmail(this.totalPedido,this.idorden).subscribe(
-      (res) => {},
-      (error) => {console.log(error);});
-    },2000);
+      (res) => {
+        this.toastrService.success("Compra realizada correctamente!\nSe te ha enviado un correo electronico de confirmacion");
+        this.router.navigate(["/Home"]);
+      });
   }
 
   vaciarCarrito(){
-    setTimeout(()=>{
       this.sendProduct.vaciarCarrito().subscribe(
-        (res) => {},
-        (error) => {console.log(error);});
-      },2000);
-
+        (res) => {});
   }
 
 

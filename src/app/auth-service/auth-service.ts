@@ -1,11 +1,3 @@
-/*
-export interface Usuario {
-    correo: string;
-    contrasena: string;
-    rol: number;
-    idUsuario: number;
-    nombre: string;
-  }*/
 
   export interface Usuario_Nuevo{
     correo: string;

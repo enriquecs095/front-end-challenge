@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/",
+        "secure": false,
+        "changeOrigin": true
+
+    }
+}

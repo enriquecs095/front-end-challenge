@@ -12,6 +12,9 @@ import { Usuario_Logging } from "../auth-service/auth-service";
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
+  correo:any;
+  contrasena:any;
+
   onSubmit(form: Usuario_Logging) {
     this.authService.loginUser(form);
   }
