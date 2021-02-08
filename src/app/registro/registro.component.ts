@@ -12,7 +12,7 @@ import { Usuario_Nuevo } from '../auth-service/auth-service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  private API = 'http://localhost:5000/api/Admin/Registro';
+  private API = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Admin/Registro';
 
   constructor(private toastr: ToastrService,private router:Router,private authService:AuthService) { }
 

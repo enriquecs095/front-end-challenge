@@ -19,7 +19,7 @@ export class DetalleOrdenComponent implements OnInit {
   url;
   nombre;
   idProducto:number
-  private API = "http://localhost:5000/api/Admin/getDetails/";
+  private API = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Admin/getDetails/";
   private routeSub: Subscription;
 
   constructor(private http: HttpClient, private authService: AuthService,private route: ActivatedRoute,private reviewsService:ReviewsService,private toastrService:ToastrService) {}

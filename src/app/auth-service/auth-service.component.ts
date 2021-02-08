@@ -6,7 +6,7 @@ import { OnUsuario,Usuario_Nuevo, Usuario_Logging } from "./auth-service";
 
 @Injectable()
 export class AuthService {
-  private API = "http://localhost:5000/api/Admin/";
+  private API = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Admin/";
   user: OnUsuario;
   constructor(
     private http: HttpClient,

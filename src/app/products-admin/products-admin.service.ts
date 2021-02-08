@@ -10,12 +10,12 @@ export class ProductsAdminService{
 constructor(private http: HttpClient){
 
 }
-private APIProductosByMenu = 'http://localhost:5000/ProductsAdmin/getProductsByMenu';
-private APIProductosPorId = 'http://localhost:5000/ProductsAdmin/getProductById';
-private APIEditProducto = 'http://localhost:5000/ProductsAdmin/putProduct';
-private APIAddProducto = 'http://localhost:5000/ProductsAdmin/addProduct';
-private APIDeleteProducto = 'http://localhost:5000/ProductsAdmin/deleteProduct';
-private APIChangeStatus = 'http://localhost:5000/ProductsAdmin/ProductStatus';
+private APIProductosByMenu = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/getProductsByMenu';
+private APIProductosPorId = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/getProductById';
+private APIEditProducto = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/putProduct';
+private APIAddProducto = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/addProduct';
+private APIDeleteProducto = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/deleteProduct';
+private APIChangeStatus = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/ProductsAdmin/ProductStatus';
 
 
 getProductosByMenu(idMenu): Observable<Product[]>{

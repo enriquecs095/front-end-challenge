@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class ProductsListService{
 
-    private APIProducts = 'http://localhost:5000/Menu/getProducts';
+    private APIProducts = 'https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/Menu/getProducts';
 
     constructor(private http : HttpClient){}
 

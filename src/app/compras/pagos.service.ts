@@ -10,9 +10,9 @@ import { Observable } from "rxjs";
 export class PagosService {
   usuarioLog: OnUsuario
 
-  private APIOrden = "http://localhost:5000/api/Pagos/IngresarOrden";
-  private APIOrdenDetalle = "http://localhost:5000/api/Pagos/IngresarOrdenDetalle";
-  private APIEMAIL = "http://localhost:5000/api/Pagos/enviarEmail";
+  private APIOrden = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Pagos/IngresarOrden";
+  private APIOrdenDetalle = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Pagos/IngresarOrdenDetalle";
+  private APIEMAIL = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Pagos/enviarEmail";
 
   constructor(
     private http: HttpClient,

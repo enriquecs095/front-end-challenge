@@ -4,8 +4,8 @@ import { newReviews } from "./menu";
 
 @Injectable()
 export class ReviewsService {
-  private APIReviews = "http://localhost:5000/Reviews/getReviews";
-  private APIAddReviews = "http://localhost:5000/Reviews/postAddReviews";
+  private APIReviews = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/Reviews/getReviews";
+  private APIAddReviews = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/Reviews/postAddReviews";
 
   constructor(private http: HttpClient) {}
 

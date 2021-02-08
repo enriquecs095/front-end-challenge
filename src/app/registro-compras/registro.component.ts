@@ -7,10 +7,12 @@ import { ListaOrden } from "./compras";
 @Component({
   templateUrl: "./registro.component.html",
 })
+
+
 export class RegistroComprasComponent implements OnInit {
   listaOrdenes: ListaOrden;
   usuarioLog: OnUsuario;
-  private API = "http://localhost:5000/api/Admin/getOrder/";
+  private API = "https://4w3x1gpo88.execute-api.us-west-2.amazonaws.com/Prod/api/Admin/getOrder/";
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
