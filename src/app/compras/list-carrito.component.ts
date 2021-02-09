@@ -41,7 +41,6 @@ export class listCarritoComponent implements OnInit {
 
   borrarProducto(producto) {
      this.carritoService.eliminarProductoDeLista(producto);
-     window.location.reload()
   }
 
 

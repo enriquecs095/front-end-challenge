@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "../auth-service/auth-service.component";
 
 @Component({
-  selector: "slideshow-class",
+  selector: "slideshow-class",//se llama con '/Home'
   templateUrl: "./slideshow.component.html",
   styleUrls: ["./slideshow.css"]
 })

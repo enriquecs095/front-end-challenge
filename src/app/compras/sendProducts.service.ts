@@ -6,6 +6,7 @@ import { Carrito, lstCarrito } from "./list-carrito";
 import { AuthService } from "../auth-service/auth-service.component";
 import { OnUsuario } from "../auth-service/auth-service";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class SendProductsService {
@@ -20,7 +21,8 @@ export class SendProductsService {
 
   constructor(private http: HttpClient,
               private toastrService:ToastrService,
-              private auth: AuthService) {}
+              private auth: AuthService,
+              private router: Router) {}
 
   hdrs = {
       headers: new HttpHeaders({
@@ -60,7 +62,7 @@ export class SendProductsService {
     this.usuarioLog = this.auth.getUser();
       this.http.delete(this.APIdeleteDeLista+"/"+producto.idproducto+"/"+this.usuarioLog.idusuario,this.hdrs).subscribe(
       (res)=>{
-        this.toastrService.success("Eliminado!");
+        window.location.reload();
       },(error)=>{
       }
     );
